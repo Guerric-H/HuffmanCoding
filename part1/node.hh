@@ -34,7 +34,7 @@ public:
     Sommet() ;
     Sommet(int count,char value) ;
 
-    //Methods :
+    //Functions :
     int  getCount() ;
     char getValue() ;
     Sommet* getLeft() ;
@@ -48,4 +48,4 @@ public:
 
     //Destructor :
     ~Sommet() ;
-}
+};

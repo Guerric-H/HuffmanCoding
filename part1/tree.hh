@@ -12,6 +12,11 @@ private:
 
 public:
 
+  //Constructors :
+    ArbreB() ;
+    ArbreB(Sommet *root) ;
+
+  //Functions :
     // Set the two roots's father to a new Sommet, then reassign the actual Root to the new one.
     void fusion(ArbreB *target) ;
     // Add the target Sommet to the first available left/right Sommet.
@@ -23,5 +28,5 @@ public:
     Sommet* find (char value) ;
     // Separate the targeted Sommet from the ArbreB but instead of deleting it, creating a new ArbreB using the target as a root.
     ArbreB* remove(Sommet* target) ;
-
-}
+    ArbreB* remove(char value) ;
+};

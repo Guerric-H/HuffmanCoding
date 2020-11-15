@@ -3,7 +3,7 @@
     //Constructors :
     Sommet::Sommet() : count{0}, value{''} {}
 
-    Sommet::Sommet(int count,char value) : count{count}, value{value} {}
+    Sommet::Sommet(char value,int count) : value{value}, count{count} {}
 
     //Methods :
     int     Sommet::getCount() {return count ;}
@@ -14,6 +14,8 @@
     Sommet* Sommet::getFather() {return father ;}
 
     void    Sommet::incrementCount() {count++ ;}
+    void    Sommet::setValue(char value) {this->value = value ;}
+    void    Sommet::setCount(int count) {this->count = count ;}
     void    Sommet::setLeft(Sommet *left) {this->left = left ;}
     void    Sommet::setLeft(Sommet *right) {this->right = right ;}
     void    Sommet::setFather(Sommet *father) {this->father = father ;}

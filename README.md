@@ -8,12 +8,15 @@ Divided in 3 part :
     Part3 : Huffman Decoding.
     
 The project is structured as shown below : 
+  
+Build/ *Makefile and builder for executable*
 
-HuffmanCoding/
-    Build/      *Directory where you create executable*
-    Headers/    *every .hh files*
-    Src/        *every non main .cpp files*
-    Main/       *every main.cpp files*
-    CMakeLists.txt *main configuration file for the executable*
-    PROJETC++.pdf
-    README.MD
+Headers/ *every .hh files*
+
+Src/ *every non main .cpp files*
+
+Main/ *every main.cpp files*
+
+PROJETC++.pdf
+
+README.MD

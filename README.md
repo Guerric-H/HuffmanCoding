@@ -12,10 +12,15 @@ This project will hopefully use a graphical display.
 
 The project is structured as shown below : 
 
-HuffmanCoding/
-    Build/      *Makefile and builder for executable*
-    Headers/    *every .hh files*
-    Src/        *every non main .cpp files*
-    Main/       *every main.cpp files*
-    PROJETC++.pdf
-    README.MD
+
+Build/ *Makefile and builder for executable*
+
+Headers/ *every .hh files*
+
+Src/ *every non main .cpp files*
+
+Main/ *every main.cpp files*
+
+PROJETC++.pdf
+
+README.MD

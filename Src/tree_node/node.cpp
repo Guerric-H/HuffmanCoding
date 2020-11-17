@@ -2,7 +2,7 @@
 
 
     //Constructors :
-    Sommet::Sommet() : count{0}, value{''} {}
+    Sommet::Sommet() : count{0}, value{-1} {}
 
     Sommet::Sommet(char value,int count) : value{value}, count{count} {}
 

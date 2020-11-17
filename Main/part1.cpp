@@ -1,10 +1,8 @@
-
 #include "tree_node/node.hh"
 #include "tree_node/tree.hh"
 #include "graphical/display.hh"
 
-#include <iostream>
-#include <queue>
+#include <QtGui/QApplication>
 
 int main ()
 {

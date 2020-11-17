@@ -32,19 +32,21 @@ public:
 
     // Constructors :
     Sommet() ;
-    Sommet(int count,char value) ;
+    Sommet(char value,int count) ;
 
     //Functions :
     int  getCount() ;
     char getValue() ;
     Sommet* getLeft() ;
     Sommet* getRight() ;
-    Sommet* getFather() :
+    Sommet* getFather() ;
 
     void incrementCount();
     void setLeft(Sommet* left) ;
     void setRight(Sommet* right) ;
     void setFather(Sommet* father) ;
+    void setValue(char value) ;
+    void setCount(int count) ;
 
     //Destructor :
     ~Sommet() ;

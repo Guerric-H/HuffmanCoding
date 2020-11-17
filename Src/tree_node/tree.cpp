@@ -1,5 +1,5 @@
-#include "tree.hh"
-#include "node.hh"
+#include "tree_node/node.hh"
+#include "tree_node/tree.hh"
 
 #include <queue>
 

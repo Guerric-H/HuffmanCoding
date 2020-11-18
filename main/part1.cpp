@@ -4,9 +4,11 @@
 
 #include <QtGui/QApplication>
 
-int main ()
+int main(int argc,char **argv)
 {
-    ArbreB exampleTree = new ArbreB() ;
-
-    return 0 ;
+    QApplication app(argc,argv);
+    QWidget window ;
+    window.show();
+    
+ return app.exec();
 }

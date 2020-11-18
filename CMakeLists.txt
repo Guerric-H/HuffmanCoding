@@ -4,8 +4,7 @@ project(HuffmanCoding)
 find_package(Qt4 REQUIRED)
 SET(CMAKE_AUTOMOC True)
 
-include_directory(headers)
-
+include_directories(headers)
 
 SET(SRCS
     src/graphical/display.cpp
@@ -14,9 +13,9 @@ SET(SRCS
 )
 
 SET(HEADERS
-    graphical/display.hh
-    tree_node/tree.hh
-    tree_node/node.hh
+    headers/graphical/display.hh
+    headers/tree_node/tree.hh
+    headers/tree_node/node.hh
 )
 
 add_executable(part1 ${SRCS} ${HEADERS} main/part1.cpp)

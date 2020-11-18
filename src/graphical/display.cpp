@@ -1,4 +1,4 @@
-#include "display.hh"
+#include "graphical/display.hh"
 
     Window::Window()
     {

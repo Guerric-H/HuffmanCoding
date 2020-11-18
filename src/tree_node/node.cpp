@@ -18,7 +18,7 @@
     void    Sommet::setValue(char value) {this->value = value ;}
     void    Sommet::setCount(int count) {this->count = count ;}
     void    Sommet::setLeft(Sommet *left) {this->left = left ;}
-    void    Sommet::setLeft(Sommet *right) {this->right = right ;}
+    void    Sommet::setRight(Sommet *right) {this->right = right ;}
     void    Sommet::setFather(Sommet *father) {this->father = father ;}
 
 

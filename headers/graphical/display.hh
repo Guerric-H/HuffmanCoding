@@ -1,3 +1,4 @@
+#pragma once
 
 #include "tree_node/tree.hh"
 #include "tree_node/node.hh"

@@ -19,12 +19,11 @@ int main(int argc,char **argv)
     Sommet *curr = tree.give_root();
 
     std::cout << "Racine : " << ( (curr) ? (curr->getValue()) : ('0') ) << ", fils : " << ( (curr->getLeft()) ? (curr->getLeft()->getValue()) : ('0') ) << " | " << ( (curr->getRight()) ? (curr->getRight()->getValue()) : ('0') ) << "\n";
-    curr = curr->getLeft();
+    /*curr = curr->getLeft();
     std::cout << "Racine : " << ( (curr) ? (curr->getValue()) : ('0') ) << ", fils : " << ( (curr->getLeft()) ? (curr->getLeft()->getValue()) : ('0') ) << " | " << ( (curr->getRight()) ? (curr->getRight()->getValue()) : ('0') ) << "\n";
     curr = curr->getFather()->getRight();
     std::cout << "Racine : " << ( (curr) ? (curr->getValue()) : ('0') ) << ", fils : " << ( (curr->getLeft()) ? (curr->getLeft()->getValue()) : ('0') ) << " | " << ( (curr->getRight()) ? (curr->getRight()->getValue()) : ('0') ) << "\n";
-    
-    std::cout << "La racine a-t-elle un fils droit ? " << ( ( tree.give_root()->getRight() ) ? ("Oui :") : ("Non :") ) << tree.give_root()->getRight() << "\n";
+    */
     /*
     QApplication app(argc,argv);*/
     window graphical ;

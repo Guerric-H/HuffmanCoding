@@ -4,23 +4,32 @@
 
 #include <iostream>
 #include <QtGui/QApplication>
+#include <QtGui/QWidget>
+#include <QtGui/QScrollArea>
+#include <QtGui/QGridLayout>
 
 int main(int argc,char **argv)
 {
     ArbreB tree ;
-    tree.insert('t',10) ;
-    tree.insert('p',5) ;
-    tree.insert('d',5) ;
-    tree.insert('r',10) ;
-    tree.insert('l',10) ;
-    tree.insert('s',0) ;
+    for (int i = 0 ; i < 100 ; i++)
+        tree.insert(i,i);
+
+    QApplication GUI(argc,argv);
+    QWidget mainWindow ;
+    QGridLayout layout;
+    QScrollArea scrollbar;
+
+    mainWindow.setLayout(&layout);
+    layout.addWidget(&scrollbar, 0, 0);
+
+    window graphical(tree) ;
+    mainWindow.show();
     
-    /*
-    QApplication app(argc,argv);
-    window graphical ;
+    scrollbar.setWidget(&graphical);
+    scrollbar.resize(500, 500);
+    scrollbar.show();
+    
+    graphical.show();
 
-    graphical.drawTree();
-    */
-
- return 0;//app.exec();
+ return GUI.exec() ;
 }

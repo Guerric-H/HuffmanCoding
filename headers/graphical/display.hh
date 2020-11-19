@@ -7,10 +7,10 @@
 
 class window : public QWidget {
 private :
-
+    ArbreB& tree;
 public :
-    //Graphical window by default. Using methods will draw the needed content. 
-    window() ;
-    void drawTree(ArbreB& tree) ;
+    //Graphical window by default. Using paintEvent will draw the needed content.
+    window(ArbreB& tree) : tree(tree) {resize(1, 1) ; }
+    void paintEvent(QPaintEvent *event);
     ~window() ;
 };

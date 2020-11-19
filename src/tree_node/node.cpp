@@ -8,17 +8,28 @@
 
     Sommet::Sommet(Sommet* left, Sommet* right)
     { 
-        left->father = right->father = this ;
-        this->left = left ; 
-        this-> right = right ; 
+        this->left = new Sommet(*left) ; 
+        this->right = new Sommet(*right) ; 
+        this->left->setFather(this) ;
+        this->right->setFather(this) ;
     }
 
-    Sommet::Sommet(Sommet& deepcopy)
+    Sommet::Sommet(Sommet const& deepcopy)
+    {
+        *this = deepcopy;
+    }
+
+    Sommet& Sommet::operator=(Sommet const& deepcopy)
     {
         value = deepcopy.value ;
         count = deepcopy.count ;
-        if (deepcopy.left) left = new Sommet(*deepcopy.left) ;
-        if (deepcopy.right) right = new Sommet(*deepcopy.right) ;
+        if (deepcopy.left) 
+            setLeft(deepcopy.left);
+        if (deepcopy.right) 
+            setRight(deepcopy.right);
+        
+        return *this;
+
     }
 
     //Methods :
@@ -32,9 +43,43 @@
     void    Sommet::incrementCount() {count++ ;}
     void    Sommet::setValue(char value) {this->value = value ;}
     void    Sommet::setCount(int count) {this->count = count ;}
-    void    Sommet::setLeft(Sommet *left) {this->left = left ;}
-    void    Sommet::setRight(Sommet *right) {this->right = right ;}
-    void    Sommet::setFather(Sommet *father) {this->father = father ;}
+
+    void    Sommet::setLeft(Sommet *left) 
+    {
+        if (left == nullptr)
+        {
+            if (this->left)
+                delete this->left;
+            this->left = nullptr;
+        } else {
+            if (this->left)
+                *this->left = *left ;
+            else
+                this->left = new Sommet(*left);
+            left->setFather(this);
+        }
+    }
+    
+    void    Sommet::setRight(Sommet *right) 
+    {
+        if (right == nullptr)
+        {
+            if (this->right)
+                delete this->right;
+            this->right = nullptr;
+        } else {
+            if (this->right)
+                *this->right = *right ;
+            else
+                this->right = new Sommet(*right);
+            right->setFather(this);
+        }
+    }
+
+    void    Sommet::setFather(Sommet *father) 
+    {
+        this->father = father;
+    }
 
 
     //Destructor :

@@ -4,30 +4,46 @@
 #include<iostream>
 #include <queue>
 
-ArbreB::ArbreB()
-{ root = nullptr ; }
+ArbreB::ArbreB() {}
 
-ArbreB::ArbreB(Sommet *root)
-{ this->root = root ; }
+ArbreB::ArbreB(Sommet& root)
+{ 
+    if (this->root)
+        *this->root = root;
+    else
+        this->root = new Sommet(root) ;
+}
+
+ArbreB::ArbreB(Sommet* root)
+{
+    this->root = root;
+}
+
+
+ArbreB::ArbreB(ArbreB const& target)
+{
+    *this = target;
+}
 
 ArbreB& ArbreB::operator =(const ArbreB& target)
 {
+    if(root)
+        delete root;
     root = new Sommet(*target.root) ;
     return *this ;
 }
 
-Sommet* ArbreB::give_root()
+Sommet* ArbreB::getRoot()
 { return root ; }
 
 ArbreB ArbreB::fusion (ArbreB& target)
 { 
-    Sommet *left = new Sommet(*root) ;
-    Sommet *right = new Sommet(*target.root) ;
-    Sommet *newRoot = new Sommet(left,right) ;
-    return ArbreB(newRoot) ;
+    ArbreB newTree ;
+    newTree.root =  new Sommet(this->root, target.root) ;
+    return newTree ;
 }
 
-void ArbreB::insert (char value,int count) 
+void ArbreB::insert (char value, int count) 
 {
     if (!root)
     {
@@ -41,71 +57,30 @@ void ArbreB::insert (char value,int count)
     while (!fifo.empty())
     {
         Sommet *current = fifo.front() ;
+        fifo.pop();
+
+        if (!current)
+            continue ;
 
         if(!current->getLeft() )
         {
             current->setLeft(new Sommet(value, count)) ;
-            break ;
+            current->getLeft()->setFather(current) ;
+            return ;
         }   
         if(!current->getRight() )
         {
             current->setRight(new Sommet(value, count)) ;
-            break ;
+            current->getRight()->setFather(current) ;
+            return ;
         }
         fifo.push(current->getLeft() )  ;
         fifo.push(current->getRight() ) ;
-        fifo.pop();
     }
 }
 
 void ArbreB::suppress (char target)
-{
-    if (root && root->getValue() == target)
-    {
-        delete root ;
-        root = nullptr ;
-        return ;
-    }
-
-    std::queue<Sommet*> fifo ;
-    fifo.push(root) ;
-
-    while (!fifo.empty())
-    {
-        Sommet *current = fifo.front() ;
-
-        if(current)
-        {
-            Sommet *left = current->getLeft() ;
-            if (left)
-            {
-                if(current->getLeft()->getValue() == target)
-                {
-                    delete left ;
-                    current->setLeft(nullptr) ;
-                    break ;
-                }   
-            }
-            
-            Sommet *right = current->getRight() ;
-            if(right)
-            {
-                if(current->getRight()->getValue() == target)
-                {
-                    delete right ;
-                    current->setRight(nullptr)  ;
-                    break ;
-                }
-            }
-            fifo.push(left)  ;
-            fifo.push(right) ;
-        }
-        fifo.pop();
-    }
-    if (fifo.empty())
-        std::cout << "The character you're looking for isn't in the tree.\n" ;
-
-}
+{ remove(target); }
 
 Sommet* ArbreB::find (char target)
 {
@@ -115,18 +90,17 @@ Sommet* ArbreB::find (char target)
     while (!fifo.empty())
     {
         Sommet *current = fifo.front() ;
-
-        if(current)
-        {
-            if(current->getValue() == target)
-                return current ;
-            else 
-            {
-                fifo.push(current->getLeft() )  ;
-                fifo.push(current->getRight() ) ;
-            }
-        }
         fifo.pop();
+        if(!current)
+            continue ;
+            
+        if(current->getValue() == target)
+            return current ;
+        else 
+        {
+            fifo.push(current->getLeft() )  ;
+            fifo.push(current->getRight() ) ;
+        }
 
     }
     return nullptr ;
@@ -136,8 +110,7 @@ ArbreB ArbreB::remove(char target)
 {
     if (root && root->getValue() == target)
     {
-        ArbreB subtree ;
-        subtree.root = root ;
+        ArbreB subtree{root} ;
         root = nullptr ;
         return subtree;
     }
@@ -148,36 +121,33 @@ ArbreB ArbreB::remove(char target)
     while (!fifo.empty())
     {
         Sommet *current = fifo.front() ;
-
-        if(current)
-        {
-            Sommet *left = current->getLeft() ;
-            if (left)
-            {
-                if(left->getValue() == target)
-                {
-                    ArbreB subtree ;
-                    subtree.root = left ;
-                    current->setLeft(nullptr) ;
-                    return subtree;
-                }   
-            }
-            
-            Sommet *right = current->getRight() ;
-            if(right)
-            {
-                if(right->getValue() == target)
-                {
-                    ArbreB subtree ;
-                    subtree.root = right ;
-                    current->setRight(nullptr) ;
-                    return subtree;
-                }
-            }
-            fifo.push(left)  ;
-            fifo.push(right) ;
-        }
         fifo.pop();
+        if(!current)
+            continue ;
+            
+        Sommet *left = current->getLeft() ;
+        if (left)
+        {
+            if(left->getValue() == target)
+            {
+                ArbreB subtree(new Sommet(*left));
+                current->setLeft(nullptr) ;
+                return subtree ;
+            }   
+        }
+        
+        Sommet *right = current->getRight() ;
+        if(right)
+        {
+            if(right->getValue() == target)
+            {
+                ArbreB subtree(new Sommet(*right));
+                current->setRight(nullptr) ;
+                return subtree ;
+            }
+        }
+        fifo.push(left)  ;
+        fifo.push(right) ;
     }
     throw std::runtime_error("The character you're looking for isn't in the tree.\n Therefore, it is not possible to return a valid Subtree.\n") ;
 } 

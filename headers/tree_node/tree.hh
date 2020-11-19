@@ -8,19 +8,21 @@
 class ArbreB {
 private:
     //Racine de l'arbre.
-    Sommet *root ;
+    Sommet *root {nullptr} ;
+    ArbreB(Sommet* root);
 
 public:
 
   //Constructors :
     ArbreB() ;
-    ArbreB(Sommet *root) ;
+    ArbreB(Sommet& root) ;
+    ArbreB(ArbreB const& target);
 
   //Overloaded operator= for deepcopy purpose.
   ArbreB& operator =(const ArbreB& target) ;
 
   //Methods :
-    Sommet* give_root() ;
+    Sommet* getRoot() ;
     // Set the two roots's father deepcopy to a new Sommet, then return the associated ArbreB. ! This does not modify any param ArbreB.
     ArbreB fusion(ArbreB& target) ;
     // Add the target Sommet to the first available left/right Sommet.

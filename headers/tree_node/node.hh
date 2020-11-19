@@ -34,7 +34,9 @@ public:
     Sommet() ;
     Sommet(char value,int count) ;
     Sommet(Sommet* left, Sommet* right) ;
-    Sommet(Sommet& deepcopy) ;
+    Sommet(Sommet const& deepcopy) ;
+
+    Sommet& operator=(Sommet const& deepcopy);
 
     //Functions :
     int  getCount() ;

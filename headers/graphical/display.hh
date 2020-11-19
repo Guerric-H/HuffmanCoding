@@ -5,10 +5,12 @@
 
 #include <QtGui/QWidget>
 
-class Window : public QWidget {
+class window : public QWidget {
 private :
 
 public :
-    Window()  ;
-    ~Window() ;
+    //Graphical window by default. Using methods will draw the needed content. 
+    window() ;
+    void drawTree(ArbreB& tree) ;
+    ~window() ;
 };

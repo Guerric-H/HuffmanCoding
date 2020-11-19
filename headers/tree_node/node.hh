@@ -33,6 +33,8 @@ public:
     // Constructors :
     Sommet() ;
     Sommet(char value,int count) ;
+    Sommet(Sommet* left, Sommet* right) ;
+    Sommet(Sommet& deepcopy) ;
 
     //Functions :
     int  getCount() ;

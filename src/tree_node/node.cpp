@@ -6,6 +6,21 @@
 
     Sommet::Sommet(char value,int count) : value{value}, count{count} {}
 
+    Sommet::Sommet(Sommet* left, Sommet* right)
+    { 
+        left->father = right->father = this ;
+        this->left = left ; 
+        this-> right = right ; 
+    }
+
+    Sommet::Sommet(Sommet& deepcopy)
+    {
+        value = deepcopy.value ;
+        count = deepcopy.count ;
+        if (deepcopy.left) left = new Sommet(*deepcopy.left) ;
+        if (deepcopy.right) right = new Sommet(*deepcopy.right) ;
+    }
+
     //Methods :
     int     Sommet::getCount() {return count ;}
     char    Sommet::getValue() {return value ;}

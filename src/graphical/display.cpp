@@ -1,10 +1,6 @@
 #include "graphical/display.hh"
 
-    Window::Window()
-    {
-        
-    }
-
-    Window::~Window() {}
+    window::window() {}
+    window::~window() {}
 
 

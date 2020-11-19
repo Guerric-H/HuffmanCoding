@@ -10,28 +10,33 @@ ArbreB::ArbreB()
 ArbreB::ArbreB(Sommet *root)
 { this->root = root ; }
 
-void ArbreB::fusion (ArbreB& target) 
+ArbreB& ArbreB::operator =(const ArbreB& target)
 {
-    Sommet *newRoot = new Sommet() ;
+    root = new Sommet(*target.root) ;
+    return *this ;
+}
 
-    root->setFather(newRoot) ;
-    target.root->setFather(newRoot) ;
+Sommet* ArbreB::give_root()
+{ return root ; }
 
-    newRoot->setLeft(root) ;
-    newRoot->setRight(target.root) ;
+ArbreB ArbreB::fusion (ArbreB& target)
+{ 
+    Sommet *left = new Sommet(*root) ;
+    Sommet *right = new Sommet(*target.root) ;
+    Sommet *newRoot = new Sommet(left,right) ;
+    return ArbreB(newRoot) ;
 }
 
 void ArbreB::insert (char value,int count) 
 {
     if (!root)
     {
-        Sommet *root = new Sommet(value, count) ;
+        root = new Sommet(value, count) ;
         return ;
     }
 
     std::queue<Sommet*> fifo ;
-    fifo.push(root->getLeft() )  ;
-    fifo.push(root->getRight() ) ;
+    fifo.push(root)  ;
 
     while (!fifo.empty())
     {
@@ -63,8 +68,7 @@ void ArbreB::suppress (char target)
     }
 
     std::queue<Sommet*> fifo ;
-    fifo.push(root->getLeft() )  ;
-    fifo.push(root->getRight() ) ;
+    fifo.push(root) ;
 
     while (!fifo.empty())
     {
@@ -98,7 +102,7 @@ void ArbreB::suppress (char target)
         }
         fifo.pop();
     }
-    if (!fifo.empty())
+    if (fifo.empty())
         std::cout << "The character you're looking for isn't in the tree.\n" ;
 
 }
@@ -139,8 +143,7 @@ ArbreB ArbreB::remove(char target)
     }
 
     std::queue<Sommet*> fifo ;
-    fifo.push(root->getLeft() )  ;
-    fifo.push(root->getRight() ) ;
+    fifo.push(root)  ;
 
     while (!fifo.empty())
     {
@@ -176,7 +179,7 @@ ArbreB ArbreB::remove(char target)
         }
         fifo.pop();
     }
-    return ArbreB() ;
+    throw std::runtime_error("The character you're looking for isn't in the tree.\n Therefore, it is not possible to return a valid Subtree.\n") ;
 } 
 
 ArbreB::~ArbreB() 

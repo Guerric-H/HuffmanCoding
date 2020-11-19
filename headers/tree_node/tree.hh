@@ -16,16 +16,20 @@ public:
     ArbreB() ;
     ArbreB(Sommet *root) ;
 
-  //Functions :
-    // Set the two roots's father to a new Sommet, then reassign the actual Root to the new one.
-    void fusion(ArbreB& target) ;
+  //Overloaded operator= for deepcopy purpose.
+  ArbreB& operator =(const ArbreB& target) ;
+
+  //Methods :
+    Sommet* give_root() ;
+    // Set the two roots's father deepcopy to a new Sommet, then return the associated ArbreB. ! This does not modify any param ArbreB.
+    ArbreB fusion(ArbreB& target) ;
     // Add the target Sommet to the first available left/right Sommet.
     void insert(char value, int count) ;
     // Delete the actual target from the ArbreB and the others letf/right downwards. Exist with Sommet * or char research.
     void suppress(char value) ;
     // Check each Sommet until we find a matching char. Return the associated pointer to the Sommet.
     Sommet* find(char value) ;
-    //
+    // Suppress the target Sommet from the tree and return a new ArbreB with the removed Sommet being the root. if no such Sommet is found, return a ArbreB by default.
     ArbreB remove(char target) ;
 
     ~ArbreB() ;

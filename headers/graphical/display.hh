@@ -1,13 +1,14 @@
-#pragma once
+//#pragma once
 
 #include "tree_node/tree.hh"
 #include "tree_node/node.hh"
 
-#include <QtGui/QWidget>
+//#include <QtGui/QWidget>
 
-class window : public QWidget {
+//class window : public QWidget {
+class window {
 private :
-
+    int test;
 public :
     //Graphical window by default. Using methods will draw the needed content. 
     window() ;

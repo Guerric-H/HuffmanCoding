@@ -45,11 +45,13 @@ void ArbreB::insert (char value,int count)
         if(!current->getLeft() )
         {
             current->setLeft(new Sommet(value, count)) ;
+            current->getLeft()->setFather(current);
             break ;
         }   
         if(!current->getRight() )
         {
             current->setRight(new Sommet(value, count)) ;
+            current->getRight()->setFather(current);
             break ;
         }
         fifo.push(current->getLeft() )  ;

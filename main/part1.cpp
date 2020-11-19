@@ -3,7 +3,8 @@
 #include "graphical/display.hh"
 
 #include <iostream>
-#include <QtGui/QApplication>
+
+//#include <QtGui/QApplication>
 
 int main(int argc,char **argv)
 {
@@ -14,13 +15,21 @@ int main(int argc,char **argv)
     tree.insert('r',10) ;
     tree.insert('l',10) ;
     tree.insert('s',0) ;
+
+    Sommet *curr = tree.give_root();
+
+    std::cout << "Racine : " << ( (curr) ? (curr->getValue()) : ('0') ) << ", fils : " << ( (curr->getLeft()) ? (curr->getLeft()->getValue()) : ('0') ) << " | " << ( (curr->getRight()) ? (curr->getRight()->getValue()) : ('0') ) << "\n";
+    curr = curr->getLeft();
+    std::cout << "Racine : " << ( (curr) ? (curr->getValue()) : ('0') ) << ", fils : " << ( (curr->getLeft()) ? (curr->getLeft()->getValue()) : ('0') ) << " | " << ( (curr->getRight()) ? (curr->getRight()->getValue()) : ('0') ) << "\n";
+    curr = curr->getFather()->getRight();
+    std::cout << "Racine : " << ( (curr) ? (curr->getValue()) : ('0') ) << ", fils : " << ( (curr->getLeft()) ? (curr->getLeft()->getValue()) : ('0') ) << " | " << ( (curr->getRight()) ? (curr->getRight()->getValue()) : ('0') ) << "\n";
     
+    std::cout << "La racine a-t-elle un fils droit ? " << ( ( tree.give_root()->getRight() ) ? ("Oui :") : ("Non :") ) << tree.give_root()->getRight() << "\n";
     /*
-    QApplication app(argc,argv);
+    QApplication app(argc,argv);*/
     window graphical ;
 
-    graphical.drawTree();
-    */
+    graphical.drawTree(tree);
 
  return 0;//app.exec();
 }

@@ -4,7 +4,6 @@
 
 //Création d'une classe pour un arbre binaire. Il commence par un noeud racine.
 
-
 class ArbreB {
 private:
     //Racine de l'arbre.

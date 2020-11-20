@@ -19,7 +19,6 @@ ArbreB::ArbreB(Sommet* root)
     this->root = root;
 }
 
-
 ArbreB::ArbreB(ArbreB const& target)
 {
     *this = target;
@@ -78,9 +77,6 @@ void ArbreB::insert (char value, int count)
         fifo.push(current->getRight() ) ;
     }
 }
-
-void ArbreB::suppress (char target)
-{ remove(target); }
 
 Sommet* ArbreB::find (char target)
 {
@@ -151,6 +147,9 @@ ArbreB ArbreB::remove(char target)
     }
     throw std::runtime_error("The character you're looking for isn't in the tree.\n Therefore, it is not possible to return a valid Subtree.\n") ;
 } 
+
+void ArbreB::suppress (char target)
+{ remove(target); }
 
 ArbreB::~ArbreB() 
 { if (root) delete root ; }

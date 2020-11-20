@@ -33,18 +33,18 @@
     }
 
     //Methods :
-    int     Sommet::getCount() {return count ;}
-    char    Sommet::getValue() {return value ;}
+    int  Sommet::getCount() {return count ;}
+    char Sommet::getValue() {return value ;}
 
     Sommet* Sommet::getLeft()   {return left   ;}
     Sommet* Sommet::getRight()  {return right  ;}
     Sommet* Sommet::getFather() {return father ;}
 
-    void    Sommet::incrementCount() {count++ ;}
-    void    Sommet::setValue(char value) {this->value = value ;}
-    void    Sommet::setCount(int count) {this->count = count ;}
+    void Sommet::incrementCount() {count++ ;}
+    void Sommet::setValue(char value) {this->value = value ;}
+    void Sommet::setCount(int count) {this->count = count ;}
 
-    void    Sommet::setLeft(Sommet *left) 
+    void Sommet::setLeft(Sommet *left) 
     {
         if (left == nullptr)
         {
@@ -60,7 +60,7 @@
         }
     }
     
-    void    Sommet::setRight(Sommet *right) 
+    void Sommet::setRight(Sommet *right) 
     {
         if (right == nullptr)
         {
@@ -76,7 +76,7 @@
         }
     }
 
-    void    Sommet::setFather(Sommet *father) 
+    void Sommet::setFather(Sommet *father) 
     {
         this->father = father;
     }

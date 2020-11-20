@@ -11,7 +11,7 @@
  *   The class needs to :
  *      -Give the reference to both left and right Sommet pointers.
  *      -Return it's own char and int.
- *      -(optional ~not implemented (yet?)~) Give the reference of the father's Sommet. (null if the selected Sommet is the tree's root.)
+ *      -Give the reference of the father's Sommet. (null if the selected Sommet is the tree's root.)
  *   
  *   Important !!!
  *      When using the Destructor, it will recursively delete every left and right pointer.

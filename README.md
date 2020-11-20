@@ -17,6 +17,10 @@ Src/ *every non main .cpp files*
 
 Main/ *every main.cpp files*
 
+Makefile  *very basic makefile to run everything from directory's root.*
+
+CMakeLists.txt  *CMake auto-generating file*
+
 PROJETC++.pdf
 
 README.MD

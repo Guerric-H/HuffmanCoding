@@ -11,7 +11,7 @@
 int main(int argc,char **argv)
 {
     ArbreB tree ;
-    for (int i = 0 ; i < 100 ; i++)
+    for (int i = 0 ; i < 300 ; i++)
         tree.insert(i,i);
 
     QApplication GUI(argc,argv);

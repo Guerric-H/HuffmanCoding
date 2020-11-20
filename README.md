@@ -19,8 +19,8 @@ Main/ *every main.cpp files*
 
 Makefile  *very basic makefile to run everything from directory's root.*
 
-CMakeLists.txt  *CMake auto-generating file*
+CMakeLists.txt  *CMake auto-generating build*
 
-PROJETC++.pdf
+PROJETC++.pdf *Project subject*
 
-README.MD
+README.MD *the file you're reading*

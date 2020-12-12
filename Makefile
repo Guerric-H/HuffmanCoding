@@ -1,6 +1,6 @@
 
-exec :
-	cd build ; cmake .. ; make ; ./part1 
+exec: 
+	mkdir build -p; cd build ; cmake .. ; make ; ./part2
 
-debug :
-	cd build ; cmake .. ; make
+compile :
+	mkdir build -p; cd build ; cmake .. ; make ;

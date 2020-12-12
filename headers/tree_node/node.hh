@@ -17,41 +17,41 @@
  *      When using the Destructor, it will recursively delete every left and right pointer.
  */
 
-class Sommet {
+class Sommet
+{
 private:
     //Node data :
-    int  count ;
-    char value ;
-    
+    int count;
+    short value;
+
     //Pointer to left, right and fathers following nodes.
-    Sommet *father {nullptr} ;
-    Sommet *left   {nullptr} ;
-    Sommet *right  {nullptr} ;
+    Sommet *father{nullptr};
+    Sommet *left{nullptr};
+    Sommet *right{nullptr};
 
 public:
-
     // Constructors :
-    Sommet() ;
-    Sommet(char value,int count) ;
-    Sommet(Sommet* left, Sommet* right) ;
-    Sommet(Sommet const& deepcopy) ;
+    Sommet();
+    Sommet(short value, int count);
+    Sommet(Sommet *left, Sommet *right);
+    Sommet(Sommet const &deepcopy);
 
-    Sommet& operator=(Sommet const& deepcopy);
+    Sommet &operator=(Sommet const &deepcopy);
 
     //Functions :
-    int  getCount() ;
-    char getValue() ;
-    Sommet* getLeft() ;
-    Sommet* getRight() ;
-    Sommet* getFather() ;
+    int getCount();
+    short getValue();
+    Sommet *getLeft();
+    Sommet *getRight();
+    Sommet *getFather();
 
     void incrementCount();
-    void setLeft(Sommet* left) ;
-    void setRight(Sommet* right) ;
-    void setFather(Sommet* father) ;
-    void setValue(char value) ;
-    void setCount(int count) ;
+    void setLeft(Sommet *left);
+    void setRight(Sommet *right);
+    void setFather(Sommet *father);
+    void setValue(short value);
+    void setCount(int count);
 
     //Destructor :
-    ~Sommet() ;
+    ~Sommet();
 };

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "node.hh"
+#include "node.hpp"
 
 //Création d'une classe pour un arbre binaire. Il commence par un noeud racine.
 

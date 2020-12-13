@@ -1,6 +1,6 @@
 #pragma once
 
-#include "tree_node/tree.hh"
+#include "tree_node/tree.hpp"
 
 #include <iostream>
 #include <utility>
@@ -18,21 +18,26 @@ private:
     ArbreB tree;
 
 public:
-    //Constructor :
+    //Constructor and Destructor :
     encoder(std::string text);
+    ~encoder();
 
     //Encoder core :
     void charMapping();
     void multiMapBuilder();
-    void huffmanTree();
+    void buildTree();
     void charToBinary(std::string text, Sommet *current);
     void encodeText();
     void encode();
+
+    //Encoder producing stats from string (% for each char)
+    std::map<char, float> createStats();
 
     //optional : getters
     std::map<char, int> getcharCount();
     std::multimap<int, ArbreB> getSubTree();
     std::string getEncoded();
     std::string getText();
-    ArbreB getTree();
+    void setText(std::string str);
+    ArbreB &getTree();
 };

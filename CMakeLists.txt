@@ -14,13 +14,12 @@ SET(SRCS
 )
 
 SET(HEADERS
-    headers/graphical/display.hh
-    headers/tree_node/tree.hh
-    headers/tree_node/node.hh
-    headers/encoding/encoding.hh
+    headers/graphical/display.hpp
+    headers/graphical/Context.hpp
+    headers/tree_node/tree.hpp
+    headers/tree_node/node.hpp
+    headers/encoding/encoding.hpp
 )
 
-add_executable(part1 ${SRCS} ${HEADERS} main/part1.cpp)
-target_link_libraries(part1 Qt4::QtCore Qt4::QtGui)
 add_executable(part2 ${SRCS} ${HEADERS} main/part2.cpp)
 target_link_libraries(part2 Qt4::QtCore Qt4::QtGui)

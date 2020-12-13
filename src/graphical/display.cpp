@@ -1,14 +1,50 @@
-#include "graphical/display.hh"
-#include "tree_node/node.hh"
-#include "tree_node/tree.hh"
+#include "graphical/display.hpp"
 
 #include <iostream>
 #include <stack>
 #include <sstream>
 
-#include <QtGui/QPainter>
+mainWindow::mainWindow()
+{
+    layout = new QGridLayout();
+    setLayout(layout);
 
-void window::paintEvent(QPaintEvent *event)
+    scrollbar = new QScrollArea();
+    layout->addWidget(scrollbar, 0, 0);
+
+    tree = new graphicTree();
+    scrollbar->setWidget(tree);
+
+    text = new graphicText();
+    layout->addWidget(text, 0, 1);
+}
+
+mainWindow::~mainWindow() {}
+
+graphicTree::graphicTree() : tree(nullptr)
+{
+    connect(&Context::instance(), SIGNAL(huffmanChanged()), this, SLOT(huffmanChanged()));
+}
+
+void graphicTree::huffmanChanged()
+{
+    tree = &Context::instance().getHuffman().getTree();
+    update();
+}
+
+void graphicText::huffmanChanged()
+{
+    auto &ctxt = Context::instance();
+
+    text = ctxt.getHuffman().getText();
+    encoded = ctxt.getHuffman().getEncoded();
+    stats = ctxt.getHuffman().createStats();
+
+    showText->setText(QString::fromStdString(text));
+    showEncoded->setText(QString::fromStdString(encoded));
+}
+
+void graphicTree::paintEvent(QPaintEvent *event)
 {
     QPainter paint(this);
 
@@ -47,7 +83,9 @@ void window::paintEvent(QPaintEvent *event)
     //IMPORTANT Stack : contains the pointer for a Sommet and the coordinate for it's father.
     std::stack<coordinate> filo;
 
-    filo.push(coordinate(tree.getRoot(), root_depth, root_coord, root_coord));
+    if (not tree or not tree->getRoot())
+        return;
+    filo.push(coordinate(tree->getRoot(), root_depth, root_coord, root_coord));
 
     while (!filo.empty())
     {
@@ -65,7 +103,7 @@ void window::paintEvent(QPaintEvent *event)
         converter << current.son->getCount();
         paint.drawText(x, y, QString::fromStdString(converter.str()));
 
-        if (current.son != tree.getRoot())
+        if (current.son != tree->getRoot())
             paint.drawLine(x - sep, y - police_size / 3, current.x, current.y);
 
         filo.push(coordinate(current.son->getLeft(), current.depth + 1, x + sep, y + sep));
@@ -83,4 +121,54 @@ void window::paintEvent(QPaintEvent *event)
     resize(sizeX_window + delta_x, y);
 }
 
-window::~window() {}
+graphicTree::~graphicTree() {}
+
+graphicText::graphicText()
+{
+    layout = new QGridLayout();
+    setLayout(layout);
+
+    showText = new QTextEdit(this);
+    showText->setText(QString::fromStdString(text));
+    layout->addWidget(showText, 1, 0);
+
+    showEncoded = new QTextEdit(this);
+    showEncoded->setReadOnly(true);
+    showEncoded->setText(QString::fromStdString(encoded));
+    layout->addWidget(showEncoded, 4, 0);
+
+    input = new QLabel(QString::fromStdWString(L"Entrée : "));
+    layout->addWidget(input, 0, 0);
+
+    output = new QLabel("Sortie : ");
+    layout->addWidget(output, 3, 0);
+
+    convert = new QPushButton("Convert text");
+    layout->addWidget(convert, 2, 0);
+
+    connect(&Context::instance(), SIGNAL(huffmanChanged()), this, SLOT(huffmanChanged()));
+    connect(convert, SIGNAL(clicked()), this, SLOT(buttonPressed()));
+}
+
+void graphicText::buttonPressed()
+{
+    static int i = 0;
+    Context::instance().setHuffman(showText->toPlainText().toStdString());
+    i = (i + 1) % 4;
+    switch (i)
+    {
+    case 0:
+        convert->setText("DESOLE");
+        break;
+    case 1:
+        convert->setText("POUR");
+        break;
+    case 2:
+        convert->setText("LES");
+        break;
+    case 3:
+        convert->setText("RAVIOLIS");
+    }
+}
+
+graphicText::~graphicText() {}

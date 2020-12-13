@@ -1,4 +1,4 @@
-#include "tree_node/node.hh"
+#include "tree_node/node.hpp"
 
 //Constructors :
 Sommet::Sommet() : count{0}, value{-1} {}

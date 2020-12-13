@@ -1,5 +1,5 @@
-#include "tree_node/node.hh"
-#include "tree_node/tree.hh"
+#include "tree_node/node.hpp"
+#include "tree_node/tree.hpp"
 
 #include <iostream>
 #include <queue>
@@ -32,8 +32,12 @@ ArbreB::ArbreB(short value, int count)
 ArbreB &ArbreB::operator=(const ArbreB &target)
 {
     if (root)
+    {
         delete root;
-    root = new Sommet(*target.root);
+        root = nullptr;
+    }
+    if (target.root)
+        root = new Sommet(*target.root);
     return *this;
 }
 

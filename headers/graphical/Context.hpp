@@ -20,8 +20,7 @@ public:
 
     void init()
     {
-        setHuffman("Just a little typing test to show how the program behave. 
-                    Note that you can change this text and click on the Button *Convert Text*.");
+        setHuffman("Just a little typing test to show how the program behave. Note that you can change this text and click on the Button *Convert Text*.");
     }
 
     encoder &getHuffman()

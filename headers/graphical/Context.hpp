@@ -38,8 +38,12 @@ public slots:
     {
         huffman.setText(input);
         huffman.encode();
+        std::cout << "\nPourcentage de présence pour chaque lettre du texte converti :\n"
+                  << "|--------------------------------------------------------------|\n";
         for (auto &i : huffman.createStats())
-            std::cout << "Lettre : \'" << i.first << "\' Occurence : " << i.second << "%" << std::endl;
+            std::cout << "Lettre : \'" << i.first
+                      << "\' Pourcentage : " << i.second
+                      << "%" << std::endl;
         emit huffmanChanged();
     }
 

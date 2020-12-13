@@ -61,8 +61,8 @@ public:
 
 public slots:
     void huffmanChanged();
-    void buttonPressed
-        signals:
+    void buttonPressed();
+signals:
 };
 
 class mainWindow : public QWidget

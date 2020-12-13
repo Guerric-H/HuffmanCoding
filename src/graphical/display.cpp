@@ -154,21 +154,6 @@ void graphicText::buttonPressed()
 {
     static int i = 0;
     Context::instance().setHuffman(showText->toPlainText().toStdString());
-    i = (i + 1) % 4;
-    switch (i)
-    {
-    case 0:
-        convert->setText("DESOLE");
-        break;
-    case 1:
-        convert->setText("POUR");
-        break;
-    case 2:
-        convert->setText("LES");
-        break;
-    case 3:
-        convert->setText("RAVIOLIS");
-    }
 }
 
 graphicText::~graphicText() {}

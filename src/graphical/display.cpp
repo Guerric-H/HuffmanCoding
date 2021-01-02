@@ -104,7 +104,9 @@ void graphicTree::paintEvent(QPaintEvent *event)
         paint.drawText(x, y, QString::fromStdString(converter.str()));
 
         if (current.son != tree->getRoot())
-            paint.drawLine(x - sep, y - police_size / 3, current.x, current.y);
+            /*paint.drawLine(x - sep, y - police_size / 3, current.x, current.y);*/
+            paint.drawLine(x - sep, y - police_size / 3, current.x, y - police_size / 3);
+            paint.drawLine(current.x, y - police_size / 3, current.x, current.y);
 
         filo.push(coordinate(current.son->getLeft(), current.depth + 1, x + sep, y + sep));
         filo.push(coordinate(current.son->getRight(), current.depth + 1, x + sep, y + sep));

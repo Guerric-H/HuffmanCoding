@@ -72,7 +72,7 @@ void decoder::verification()
             return ;
         }
     }
-    checker = "The message might have been created by the given Tree, (each char has matching frequency).\nNote that this cannot be ensured, has we have no way to check if characters are the same as the original Tree.";
+    checker = "The message might have been created by the given Tree, (each char has matching frequency).\nNote that this cannot be ensured, has we have no way to check if characters are the same as the original Tree, and in the same order.";
 }
 
 std::string decoder::getEncoded() { return encoded; }

@@ -29,5 +29,5 @@ SET(HEADERS
     headers/decoding/decoding.hpp
 )
 
-add_executable(part3 ${SRCS} ${HEADERS} main/part3.cpp)
-target_link_libraries(part3 Qt4::QtCore Qt4::QtGui)
+add_executable(main ${SRCS} ${HEADERS} main/main.cpp)
+target_link_libraries(main Qt4::QtCore Qt4::QtGui)

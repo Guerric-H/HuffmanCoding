@@ -1,5 +1,4 @@
 #include <iostream>
-#include <utility>
 #include <map>
 
 #include "encoding/encoding.hpp"
@@ -7,7 +6,7 @@
 #include "tree_node/node.hpp"
 
 //Constructors
-encoder::encoder(std::string p_text) : text{p_text} {}
+encoder::encoder(){}
 
 void encoder::charMapping()
 {
@@ -76,17 +75,21 @@ void encoder::encode()
     multiMapBuilder();
     buildTree();
     encodeText();
+    createStats();
 }
 
-std::map<char, float> encoder::createStats()
+void encoder::createStats()
 {
-    std::map<char, float> stat;
-    if (text.empty())
-        return stat;
+    std::stringstream display ;
     for (auto &i : charCount)
-        stat[i.first] = (float)(i.second * 100) / (float)text.size();
-
-    return stat;
+    {
+        float percentage = (float)(i.second * 100) / (float)text.size();
+        statsMap[i.first] = percentage;
+        display << i.first
+                << " : " << percentage
+                << "%"   << std::endl << std::endl ;
+    }
+    stats = display.str();
 }
 
 //Getters
@@ -97,14 +100,17 @@ std::map<char, int> encoder::getcharCount()
 std::multimap<int, ArbreB> encoder::getSubTree() { return TreeMap; }
 std::string encoder::getEncoded() { return encoded; }
 std::string encoder::getText() { return text; }
+std::string encoder::getStats(){ return stats; }
 ArbreB &encoder::getTree() { return tree; }
 
-void encoder::setText(std::string str)
+void encoder::setText(std::string newText)
 {
-    text = str;
+    text = newText;
     tree = ArbreB();
+    stats.clear();
     encoded.clear();
     charCount.clear();
+    statsMap.clear();
     charCoded.clear();
     TreeMap.clear();
 }

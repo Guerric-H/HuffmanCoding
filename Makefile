@@ -1,6 +1,6 @@
 
 exec: 
-	mkdir build -p; cd build ; cmake .. ; make ; ./part2
+	mkdir build -p; cd build ; cmake .. ; make ; ./part3
 
 compile :
 	mkdir build -p; cd build ; cmake .. ; make ;

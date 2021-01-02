@@ -1,6 +1,7 @@
 #pragma once
 #include <QtCore/QObject>
 #include "encoding/encoding.hpp"
+#include "decoding/decoding.hpp"
 
 class Context : public QObject
 {
@@ -8,8 +9,9 @@ class Context : public QObject
 
 private:
     encoder huffman;
+    decoder translater;
 
-    Context() : huffman("") {}
+    Context() : huffman() , translater() {}
 
 public:
     static Context &instance()
@@ -21,11 +23,17 @@ public:
     void init()
     {
         setHuffman("Just a little typing test to show how the program behave. Note that you can change this text and click on the Button *Convert Text*.");
+        setDecoder(huffman.getEncoded());
     }
 
     encoder &getHuffman()
     {
         return huffman;
+    }
+
+    decoder &getDecoder()
+    {
+        return translater ;
     }
 
     ~Context(){};
@@ -38,15 +46,20 @@ public slots:
     {
         huffman.setText(input);
         huffman.encode();
-        std::cout << "\nPourcentage de présence pour chaque lettre du texte converti :\n"
-                  << "|--------------------------------------------------------------|\n";
-        for (auto &i : huffman.createStats())
-            std::cout << "Lettre : \'" << i.first
-                      << "\' Pourcentage : " << i.second
-                      << "%" << std::endl;
         emit huffmanChanged();
+    }
+
+    void setDecoder(std::string const &input)
+    {
+        translater.setEncoded(input);
+        translater.setTree(huffman.getTree());
+        translater.decode();
+        translater.verification();
+
+        emit decoderChanged();
     }
 
 signals:
     void huffmanChanged();
+    void decoderChanged();
 };

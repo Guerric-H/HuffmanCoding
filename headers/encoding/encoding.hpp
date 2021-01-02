@@ -3,6 +3,7 @@
 #include "tree_node/tree.hpp"
 
 #include <iostream>
+#include <sstream>
 #include <utility>
 #include <iterator>
 #include <map>
@@ -12,14 +13,16 @@ class encoder
 private:
     std::string text = "";
     std::string encoded = "";
+    std::string stats = "";
     std::map<char, int> charCount;
+    std::map<char, float> statsMap;
     std::map<char, std::string> charCoded;
     std::multimap<int, ArbreB> TreeMap;
     ArbreB tree;
 
 public:
     //Constructor and Destructor :
-    encoder(std::string text);
+    encoder();
     ~encoder();
 
     //Encoder core :
@@ -31,13 +34,16 @@ public:
     void encode();
 
     //Encoder producing stats from string (% for each char)
-    std::map<char, float> createStats();
+    void createStats();
 
     //optional : getters
     std::map<char, int> getcharCount();
     std::multimap<int, ArbreB> getSubTree();
     std::string getEncoded();
     std::string getText();
-    void setText(std::string str);
+    std::string getStats();
     ArbreB &getTree();
+
+    //Useful setter :
+    void setText(std::string newText);
 };

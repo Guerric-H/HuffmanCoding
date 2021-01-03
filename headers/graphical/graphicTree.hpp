@@ -1,7 +1,6 @@
 #pragma once
 
 #include <stack>
-#include <sstream>
 
 #include <QtCore/QObject>
 #include <QtGui/QWidget>
@@ -29,6 +28,6 @@ public:
     QSize sizeHint() const { return QSize(900, 900); }
 
 public slots:
+    //Called when a button is pressed, refresh the Tree with new one.
     void huffmanChanged();
-signals:
 };

@@ -2,12 +2,12 @@
 
 graphicTree::graphicTree() : tree(nullptr)
 {
-    connect(&Context::instance(), SIGNAL(huffmanChanged()), this, SLOT(huffmanChanged()));
+    connect(&context::instance(), SIGNAL(huffmanChanged()), this, SLOT(huffmanChanged()));
 }
 
 void graphicTree::huffmanChanged()
 {
-    tree = &Context::instance().getHuffman().getTree();
+    tree = &context::instance().getHuffman().getTree();
     update();
 }
 
@@ -65,7 +65,12 @@ void graphicTree::paintEvent(QPaintEvent *event)
             continue;
 
         if (current.son->getValue() != -1)
-            converter << (char)current.son->getValue() << " | ";
+            if (current.son->getValue() == 9)
+                converter << "Tab" << " | ";
+            else if (current.son->getValue() == 10)
+                converter << "Enter" << " | ";
+            else 
+                converter << (char)current.son->getValue() << " | ";
 
         converter << current.son->getCount();
         paint.drawText(x, y, QString::fromStdString(converter.str()));

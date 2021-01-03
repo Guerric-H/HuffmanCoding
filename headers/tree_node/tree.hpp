@@ -2,12 +2,10 @@
 
 #include "node.hpp"
 
-//Création d'une classe pour un arbre binaire. Il commence par un noeud racine.
-
 class ArbreB
 {
 private:
-  //Racine de l'arbre.
+  //Root's tree.
   Sommet *root{nullptr};
   ArbreB(Sommet *root);
 

@@ -31,13 +31,13 @@ graphicEncoding::graphicEncoding()
     showStats->setText(QString::fromStdString("test"));
     layout->addWidget(showStats, 6, 0);
 
-    connect(&Context::instance(), SIGNAL(huffmanChanged()), this, SLOT(huffmanChanged()));
+    connect(&context::instance(), SIGNAL(huffmanChanged()), this, SLOT(huffmanChanged()));
     connect(convert, SIGNAL(clicked()), this, SLOT(buttonPressed()));
 }
 
 void graphicEncoding::huffmanChanged()
 {
-    auto &ctxt = Context::instance();
+    auto &ctxt = context::instance();
 
     text = ctxt.getHuffman().getText();
     encoded = ctxt.getHuffman().getEncoded();
@@ -50,7 +50,7 @@ void graphicEncoding::huffmanChanged()
 
 void graphicEncoding::buttonPressed()
 {
-    Context::instance().setHuffman(showText->toPlainText().toStdString());
+    context::instance().setHuffman(showText->toPlainText().toStdString());
 }
 
 graphicEncoding::~graphicEncoding() {}

@@ -20,13 +20,16 @@
 class Sommet
 {
 private:
-    //Node data :
+    //Frequence of the character.
     int count;
+    //Associated character of the node.
     short value;
 
-    //Pointer to left, right and fathers following nodes.
+    //Pointer to father node.
     Sommet *father{nullptr};
+    //Pointer to left node.
     Sommet *left{nullptr};
+    //Pointer to right node.
     Sommet *right{nullptr};
 
 public:
@@ -38,14 +41,17 @@ public:
 
     Sommet &operator=(Sommet const &deepcopy);
 
-    //Functions :
+    //Getters :
     int getCount();
     short getValue();
     Sommet *getLeft();
     Sommet *getRight();
     Sommet *getFather();
 
+    //Increase the frequency by one.
     void incrementCount();
+
+    //Setters :
     void setLeft(Sommet *left);
     void setRight(Sommet *right);
     void setFather(Sommet *father);

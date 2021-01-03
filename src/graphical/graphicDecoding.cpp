@@ -31,13 +31,13 @@ graphicDecoding::graphicDecoding()
     showChecker->setText(QString::fromStdString(checker));
     layout->addWidget(showChecker,6,0);
 
-    connect(&Context::instance(), SIGNAL(decoderChanged()), this, SLOT(decoderChanged()));
+    connect(&context::instance(), SIGNAL(decoderChanged()), this, SLOT(decoderChanged()));
     connect(convert, SIGNAL(clicked()), this, SLOT(buttonPressed()));
 }
 
 void graphicDecoding::decoderChanged()
 {
-    auto &ctxt = Context::instance();
+    auto &ctxt = context::instance();
     encoded = ctxt.getDecoder().getEncoded();
     decoded = ctxt.getDecoder().getDecoded();
     checker = ctxt.getDecoder().getChecker();
@@ -50,7 +50,7 @@ void graphicDecoding::decoderChanged()
 
 void graphicDecoding::buttonPressed()
 {
-    Context::instance().setDecoder(showEncoded->toPlainText().toStdString());
+    context::instance().setDecoder(showEncoded->toPlainText().toStdString());
 }
 
 graphicDecoding::~graphicDecoding(){}

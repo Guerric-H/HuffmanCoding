@@ -7,6 +7,7 @@ SET(CMAKE_AUTOMOC True)
 include_directories(headers)
 
 SET(SRCS
+    src/graphical/context.cpp
     src/graphical/mainwindow.cpp
     src/graphical/graphicTree.cpp
     src/graphical/graphicEncoding.cpp

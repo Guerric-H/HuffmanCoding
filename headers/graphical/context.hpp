@@ -3,62 +3,43 @@
 #include "encoding/encoding.hpp"
 #include "decoding/decoding.hpp"
 
-class Context : public QObject
+class context : public QObject
 {
     Q_OBJECT
 
 private:
     encoder huffman;
     decoder translater;
-
-    Context() : huffman() , translater() {}
+    context();
 
 public:
-    static Context &instance()
+
+    //Create a context (named singleton for the representation)
+    static context &instance()
     {
-        static Context singleton;
+        static context singleton;
         return singleton;
     }
 
-    void init()
-    {
-        setHuffman("Just a little typing test to show how the program behave. Note that you can change this text and click on the Button *Convert Text*.");
-        setDecoder(huffman.getEncoded());
-    }
+    //After creation, initialize our context with simple constructors for encoder and decoder.
+    void init();
 
-    encoder &getHuffman()
-    {
-        return huffman;
-    }
+    //Getters
+    encoder &getHuffman();
+    decoder &getDecoder();
+    
+    //Destructor
+    ~context();
 
-    decoder &getDecoder()
-    {
-        return translater ;
-    }
+    //This is made to avoid multiple context in the program with static.
+    context(context &) = delete;
+    context &operator=(context &) = delete;
 
-    ~Context(){};
-
-    Context(Context &) = delete;
-    Context &operator=(Context &) = delete;
-
+//Setters for encoder and decoder
 public slots:
-    void setHuffman(std::string const &input)
-    {
-        huffman.setText(input);
-        huffman.encode();
-        emit huffmanChanged();
-    }
-
-    void setDecoder(std::string const &input)
-    {
-        translater.setEncoded(input);
-        translater.setTree(huffman.getTree());
-        translater.decode();
-        translater.verification();
-
-        emit decoderChanged();
-    }
-
+    void setHuffman(std::string const &input);
+    void setDecoder(std::string const &input);
+//Widget's associated methods will be triggered once these signals occur. 
 signals:
     void huffmanChanged();
     void decoderChanged();

@@ -85,9 +85,22 @@ void encoder::createStats()
     {
         float percentage = (float)(i.second * 100) / (float)text.size();
         statsMap[i.first] = percentage;
-        display << i.first
-                << " : " << percentage
-                << "%"   << std::endl << std::endl ;
+        if (i.first == 9)
+        {
+            display << "Tab"
+            << "  :  " << percentage
+            << "%"   << std::endl << std::endl ;
+        } else if (i.first == 10)
+        {
+            display << "Enter"
+            << "  :  " << percentage
+            << "%"   << std::endl << std::endl ;
+        } else
+        {
+            display << i.first
+            << "  :  " << percentage
+            << "%"   << std::endl << std::endl ;
+        }
     }
     stats = display.str();
 }

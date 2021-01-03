@@ -69,6 +69,8 @@ void graphicTree::paintEvent(QPaintEvent *event)
                 converter << "Tab" << " | ";
             else if (current.son->getValue() == 10)
                 converter << "Enter" << " | ";
+            else if (current.son->getValue() == 32)
+                converter << "Space" << " | ";
             else 
                 converter << (char)current.son->getValue() << " | ";
 

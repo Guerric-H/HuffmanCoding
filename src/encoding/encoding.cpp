@@ -95,7 +95,12 @@ void encoder::createStats()
             display << "Enter"
             << "  :  " << percentage
             << "%"   << std::endl << std::endl ;
-        } else
+        } else if (i.first == 32) 
+        {
+            display << "Space"
+            << "  :  " << percentage
+            << "%"   << std::endl << std::endl ;
+        }else
         {
             display << i.first
             << "  :  " << percentage
